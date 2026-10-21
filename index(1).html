@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mustafa &amp; Saima — Nikkah Invitation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="You are cordially invited to the Nikkah of Mustafa Rajapkar &amp; Saima Shaikh.">
+<meta property="og:title" content="Mustafa &amp; Saima — Nikkah Invitation">
+<meta property="og:description" content="You are cordially invited. Tap the card to open your invitation.">
+<meta name="theme-color" content="#1a0506">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js"</script>
+<style>
+:root{
+  --gold:#d4a84b; --gold-l:#f6e3a1; --gold-d:#9c6f1c; --cream:#f0e2bd;
+  --vh:1vh; --ar:.56; --dur:1300ms;
+  --w:min(95vw, calc((var(--vh)*100 - 150px)*var(--ar)), 540px);
+}
+@supports (height:100dvh){:root{--vh:1dvh}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0b0203;color:var(--cream)}
+body{font-family:"Cormorant Garamond",Georgia,serif;user-select:none;-webkit-user-select:none}
+.gt{background:linear-gradient(135deg,#fbeab0 0%,#d7a947 40%,#a8761f 65%,#f3d98a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+
+/* ---------- scene ---------- */
+#app{position:fixed;inset:0;display:grid;place-items:center;
+  background:radial-gradient(90% 70% at 50% 40%,#5a0d12 0%,#2a070a 50%,#0b0203 100%);overflow:hidden}
+#app::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cpath d='M23 3 L43 23 L23 43 L3 23Z' fill='none' stroke='%23d4a84b' stroke-opacity='.10'/%3E%3C/svg%3E")}
+.sparkle{position:absolute;bottom:-10px;border-radius:50%;background:radial-gradient(#fff3c4,#d4a84b 60%,transparent 70%);
+  opacity:0;animation:rise linear infinite;pointer-events:none}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translateY(-105vh) scale(1.1);opacity:0}}
+
+.top-note{position:absolute;top:calc(env(safe-area-inset-top) + 4.5vh);left:0;right:0;text-align:center;pointer-events:none;
+  transition:opacity .6s,transform .6s}
+.top-note .t1{font-family:Cinzel,serif;font-size:11px;letter-spacing:.5em;text-indent:.5em;color:var(--gold)}
+.top-note .t2{margin-top:8px;font-family:"Great Vibes",cursive;font-size:30px}
+.tap{margin-top:14px;font-family:Cinzel,serif;font-size:11px;letter-spacing:.35em;text-indent:.35em;color:var(--gold-l);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+#app.opening .top-note,#app.reading .top-note{opacity:0;transform:translateY(-8px)}
+#app.opening .tap,#app.reading .tap{animation:none}
+
+.hold{position:relative;width:var(--w);height:calc(var(--w)/var(--ar));margin-top:2vh;animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+#app.opening .hold,#app.reading .hold{animation:none}
+
+/* hand */
+.hand{position:absolute;inset:0;pointer-events:none;transition:transform .9s cubic-bezier(.5,0,.7,.4),opacity .7s ease;overflow:visible}
+.hand svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hand.back{z-index:0}.hand.front{z-index:3;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+#app.opening .hand,#app.reading .hand{transform:translateY(38%);opacity:0}
+
+/* ---------- book ---------- */
+.book{position:absolute;inset:0;z-index:1;perspective:2600px;touch-action:pan-y;
+  transform:translateX(var(--shift,0px));transition:transform var(--dur) cubic-bezier(.5,.05,.25,1)}
+.book::after{content:"";position:absolute;left:3%;right:3%;bottom:-3%;height:7%;z-index:-1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);filter:blur(6px)}
+.leaf{position:absolute;inset:0;transform-origin:left center;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;
+  transform:rotateY(0deg) translateZ(calc(var(--i)*-1px));
+  transition:transform var(--dur) cubic-bezier(.5,.05,.25,1)}
+.leaf.flipped{transform:rotateY(-180deg) translateZ(calc(var(--i)*-1px))}
+.leaf:not([data-i="0"]){visibility:hidden}
+.ns{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#300;color:#fff;font:14px/1.4 sans-serif;padding:12px;text-align:center}
+.face{position:absolute;inset:0;overflow:hidden;container-type:inline-size;border-radius:.5cqw;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 0 0 1px rgba(212,168,75,.55)}
+.face.back{transform:rotateY(180deg)}
+/* shading while a page turns */
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:9;opacity:0;
+  transition:opacity calc(var(--dur)*.5) ease}
+.face.front::after{background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.1))}
+.face.back::after{background:linear-gradient(270deg,rgba(0,0,0,.65),rgba(0,0,0,.1));opacity:.6}
+.leaf.flipped .face.front::after{opacity:.6}
+.leaf:not(.flipped) .face.front::after{opacity:0;transition-delay:calc(var(--dur)*.45)}
+.leaf.flipped .face.back::after{opacity:0;transition-delay:calc(var(--dur)*.45)}
+.leaf:not(.flipped) .face.back::after{opacity:.6;transition-delay:0s}
+/* spine shadow */
+.face.front::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7cqw;z-index:8;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.5),transparent)}
+.face.back::before{content:"";position:absolute;right:0;top:0;bottom:0;width:7cqw;z-index:8;pointer-events:none;
+  background:linear-gradient(270deg,rgba(0,0,0,.5),transparent)}
+
+/* ---------- flat mode (phones / tablets): no 3D, so every browser shows every page ---------- */
+.flat .book{perspective:none}
+.flat .leaf,.flat .leaf.flipped{transform:none;-webkit-transform-style:flat;transform-style:flat;opacity:0;visibility:hidden;pointer-events:none}
+.flat .leaf.cur{opacity:1;visibility:visible;pointer-events:auto;animation:fin .5s ease both}
+.flat .face.back{display:none}
+.flat .face{backface-visibility:visible;-webkit-backface-visibility:visible}
+.flat .face::after{display:none}
+@keyframes fin{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+
+/* ---------- page template (red / gold / black band) ---------- */
+.pg{position:absolute;inset:0;display:grid;grid-template-rows:17% 66% 17%;
+  background:radial-gradient(120% 70% at 50% 0%,#a5181e 0%,#6b0b10 48%,#3a0508 100%)}
+.pg::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 2 L24 13 L13 24 L2 13Z' fill='none' stroke='%23d4a84b' stroke-opacity='.2'/%3E%3C/svg%3E")}
+.orn{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:2cqw 0}
+.orn svg{height:100%;width:auto;max-width:80%;filter:drop-shadow(0 .3cqw .4cqw rgba(0,0,0,.55))}
+.orn.bot svg{transform:scaleY(-1)}
+.band{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#080304,#150708 50%,#080304)}
+.rope{position:absolute;left:0;right:0;height:2.6cqw;z-index:2;
+  background:repeating-linear-gradient(115deg,#f7e6aa 0 .7cqw,#8f6318 .7cqw 1.4cqw);
+  border-block:.4cqw solid #e6c16a;box-shadow:0 0 1.6cqw rgba(212,168,75,.4)}
+.rope.t{top:0}.rope.b{bottom:0}
+.content{position:relative;z-index:1;width:100%;padding:4.4cqw 7cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+/* peel corner */
+.peel{position:absolute;right:0;bottom:0;width:13cqw;height:13cqw;z-index:10;border:0;cursor:pointer;
+  background:linear-gradient(135deg,transparent 50%,#f4dc98 50%,#a87a22 100%);
+  box-shadow:-1.2cqw -1.2cqw 2.4cqw rgba(0,0,0,.45);border-top-left-radius:100%;
+  transition:width .25s,height .25s;animation:peel 2.2s ease-in-out infinite}
+.peel:hover{width:16cqw;height:16cqw}
+@keyframes peel{50%{width:16cqw;height:16cqw}}
+
+/* ---------- typography ---------- */
+.ar{font-family:Amiri,"Traditional Arabic","Geeza Pro",serif;direction:rtl;line-height:1.9}
+.kick{font-family:Cinzel,serif;font-size:3.5cqw;letter-spacing:.42em;text-indent:.42em;color:var(--gold);text-transform:uppercase}
+.script{font-family:"Great Vibes","Snell Roundhand",cursive;line-height:1.05}
+.cin{font-family:Cinzel,serif}
+.it{font-style:italic;color:#ead9a6}
+.star{color:var(--gold);font-size:3.6cqw;line-height:1;margin:.8cqw 0}
+
+/* cover */
+.cover .content{gap:1.4cqw}
+.cover .bis{font-size:7.3cqw}
+.cover .ni{font-family:Cinzel,serif;font-size:3.6cqw;letter-spacing:.5em;text-indent:.5em;color:var(--gold-l);text-transform:uppercase}
+.cover .nm{font-size:20.5cqw}
+.cover .amp{font-family:"Great Vibes",cursive;font-size:9.1cqw;color:var(--gold)}
+.seal{margin-top:2.2cqw;width:15cqw;height:15cqw;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,#d02c33,#7e0e14 60%,#4a0508);
+  box-shadow:0 .8cqw 1.8cqw rgba(0,0,0,.6),inset 0 0 0 .7cqw rgba(246,227,161,.45),inset 0 0 0 1.2cqw rgba(0,0,0,.25);
+  font-family:"Great Vibes",cursive;font-size:7.1cqw;color:var(--gold-l)}
+.shine{position:absolute;inset:0;z-index:7;pointer-events:none;overflow:hidden}
+.shine::after{content:"";position:absolute;top:-20%;bottom:-20%;width:28%;left:-40%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,240,190,.28),transparent);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-40%}100%{left:140%}}
+.cover-face{cursor:pointer}
+
+/* page 1 */
+.p1 .content{gap:.5cqw;padding:3cqw 6cqw}
+.p1 .bis{font-size:6.4cqw;line-height:1.5}
+.p1 .bl{font-size:4.0cqw}
+.p1 .host{font-family:Cinzel,serif;font-weight:600;font-size:3.9cqw;letter-spacing:.06em;line-height:1.45;color:var(--gold-l)}
+.p1 .host i{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:3.6cqw;color:var(--gold);letter-spacing:0}
+.p1 .inv{font-size:3.9cqw;line-height:1.3;color:var(--cream)}
+.p1 .inv b{font-family:Cinzel,serif;font-weight:600;font-size:3.8cqw;letter-spacing:.2em;color:var(--gold-l)}
+.p1 .nm{font-size:12.5cqw}
+.p1 .sur{font-family:Cinzel,serif;font-size:3.8cqw;letter-spacing:.42em;text-indent:.42em;color:var(--gold-l);margin-top:-.4cqw}
+.p1 .wi{font-style:italic;font-size:3.9cqw;color:var(--gold)}
+.p1 .fam{font-size:3.4cqw;line-height:1.3;color:var(--cream);margin-top:.4cqw}
+
+/* page 2 */
+.p2 .content{gap:1.2cqw}
+.p2 h2{font-size:12.5cqw;font-weight:400}
+.scratch{position:relative;width:66cqw;height:31cqw;border-radius:2cqw;overflow:hidden;
+  border:.45cqw solid var(--gold);box-shadow:0 0 3cqw rgba(212,168,75,.3)}
+.reveal{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#2a0a0d,#0c0405)}
+.reveal .d{font-family:Cinzel,serif;font-size:3.8cqw;letter-spacing:.45em;text-indent:.45em;color:var(--gold-l);text-transform:uppercase}
+.reveal .n{font-family:Cinzel,serif;font-weight:700;font-size:16.0cqw;line-height:1.05}
+.reveal .m{font-family:Cinzel,serif;font-size:4.8cqw;letter-spacing:.3em;text-indent:.3em;color:var(--gold-l);text-transform:uppercase}
+.scratch canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;transition:opacity .9s}
+.scratch canvas.gone{opacity:0;pointer-events:none}
+.scratch.done{animation:glow 1.6s ease-out}
+@keyframes glow{0%{box-shadow:0 0 0 rgba(212,168,75,0)}40%{box-shadow:0 0 6cqw 1cqw rgba(246,227,161,.8)}100%{box-shadow:0 0 3cqw rgba(212,168,75,.3)}}
+.hint{font-size:3.4cqw;font-style:italic;color:#c8b27a;transition:opacity .5s}
+.p2 .lab{font-family:Cinzel,serif;font-size:3.3cqw;letter-spacing:.45em;text-indent:.45em;color:var(--gold);margin-top:.6cqw}
+.p2 .tv{font-size:6.2cqw;font-weight:600;color:var(--gold-l);letter-spacing:.02em}
+.cd{display:flex;gap:2cqw;margin-top:.6cqw}
+.cd div{width:14.5cqw;padding:1.6cqw 0 1.4cqw;border:.3cqw solid rgba(212,168,75,.7);border-radius:1.6cqw;
+  background:linear-gradient(180deg,rgba(122,15,20,.55),rgba(30,5,7,.7))}
+.cd b{display:block;font-family:Cinzel,serif;font-weight:600;font-size:6.8cqw;line-height:1.1;color:var(--gold-l)}
+.cd span{display:block;font-family:Cinzel,serif;font-size:3.0cqw;letter-spacing:.2em;text-indent:.2em;color:var(--gold);text-transform:uppercase;margin-top:.4cqw}
+.cap{font-size:3.5cqw;font-style:italic;color:#c8b27a}
+
+/* page 3 */
+.p3 .content{gap:1.1cqw;padding:3cqw 7cqw}
+.p3 .vn{font-family:Cinzel,serif;font-weight:700;font-size:6.6cqw;line-height:1.2;letter-spacing:.06em;margin-top:.2cqw}
+.p3 .ad{font-size:3.6cqw;line-height:1.3;color:var(--cream);max-width:76cqw}
+.btn{display:inline-block;margin-top:.8cqw;padding:1.9cqw 6cqw;border:.4cqw solid var(--gold);border-radius:10cqw;text-decoration:none;
+  font-family:Cinzel,serif;font-weight:600;font-size:3.3cqw;letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:#1b0507;
+  background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);box-shadow:0 .8cqw 1.8cqw rgba(0,0,0,.5)}
+.p3 .dua{font-size:5.2cqw;line-height:1.7;color:var(--gold-l)}
+.p3 .tr{font-size:3.5cqw}
+.p3 .sg{font-size:9.1cqw}
+
+/* page 4 : RSVP */
+.p4 .content{gap:1cqw;padding:3cqw 7cqw}
+.p4 h2{font-size:11.4cqw;font-weight:400}
+.p4 .sub{font-size:3.6cqw;line-height:1.3;color:var(--cream)}
+.p4 .by{font-family:Cinzel,serif;font-size:3.0cqw;letter-spacing:.22em;text-indent:.22em;color:var(--gold);text-transform:uppercase;line-height:1.5}
+.p4 form{width:100%;display:flex;flex-direction:column;gap:1cqw;text-align:left;margin-top:.6cqw}
+.p4 .l{font-family:Cinzel,serif;font-size:3.0cqw;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
+.p4 .txt{width:100%;height:10cqw;padding:0 3cqw;border:.35cqw solid rgba(212,168,75,.7);border-radius:1.6cqw;background:rgba(255,255,255,.06);
+  color:var(--gold-l);font-family:"Cormorant Garamond",Georgia,serif;font-size:max(16px,4cqw);outline:0;user-select:text;-webkit-user-select:text}
+.p4 .txt::placeholder{color:#8f7a4d}
+.p4 .txt:focus{border-color:var(--gold-l);box-shadow:0 0 0 .5cqw rgba(212,168,75,.25)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.opt span{display:flex;align-items:center;justify-content:center;height:11cqw;padding:0 1cqw;text-align:center;font-size:3.6cqw;line-height:1.1;color:var(--cream);
+  border:.35cqw solid rgba(212,168,75,.7);border-radius:1.6cqw;background:rgba(255,255,255,.04);transition:background .25s,color .25s}
+.opt input:checked+span{background:linear-gradient(135deg,#fbeab0,#d7a947 55%,#f0d27f);color:#1b0507;font-weight:600}
+.opt input:focus-visible+span{outline:.5cqw solid var(--gold-l);outline-offset:.4cqw}
+.step{display:flex;align-items:center;justify-content:center;gap:5cqw}
+.step button{width:9cqw;height:9cqw;border-radius:50%;border:.35cqw solid rgba(212,168,75,.7);background:rgba(255,255,255,.05);color:var(--gold-l);font-size:5.7cqw;line-height:1;cursor:pointer}
+.step button:disabled{opacity:.3}
+.step b{font-family:Cinzel,serif;font-size:6.8cqw;min-width:8cqw;text-align:center;color:var(--gold-l)}
+.send{display:flex;align-items:center;justify-content:center;gap:2cqw;height:10.5cqw;margin-top:.8cqw;border:0;border-radius:10cqw;cursor:pointer;
+  background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);color:#1b0507;font-family:Cinzel,serif;font-weight:700;font-size:3.4cqw;letter-spacing:.2em;
+  text-transform:uppercase;box-shadow:0 .8cqw 1.8cqw rgba(0,0,0,.5)}
+.send svg{width:3.6cqw;height:3.6cqw}
+.send:disabled{opacity:.6;cursor:default}
+.msg{font-size:3.4cqw;font-style:italic;color:#f2b8b0;text-align:center;min-height:3.4cqw;line-height:1.2}
+.thanks{display:none;flex-direction:column;align-items:center;gap:2cqw;margin-top:2cqw}
+.thanks .ar{font-size:6.8cqw;color:var(--gold-l)}
+.thanks p{font-size:4.3cqw;line-height:1.35;color:var(--cream)}
+.p4.sent form{display:none}.p4.sent .thanks{display:flex}
+.p4.sent .sub,.p4.sent .by{display:none}
+
+/* inside / back faces */
+.inside .content{gap:2cqw}
+.inside .mono{font-size:25.1cqw}
+.inside .ar{font-size:5.7cqw;color:var(--gold)}
+
+/* ---------- tap to open button ---------- */
+.openbtn{position:absolute;z-index:20;left:50%;bottom:calc(env(safe-area-inset-bottom) + 2vh);transform:translateX(-50%);
+  height:50px;padding:0 34px;border:1px solid var(--gold-l);border-radius:40px;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);color:#1b0507;
+  font-family:Cinzel,serif;font-weight:700;font-size:14px;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 22px rgba(212,168,75,.45);animation:btnp 1.8s ease-in-out infinite;
+  transition:opacity .4s}
+@keyframes btnp{50%{box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 34px rgba(246,227,161,.85);transform:translateX(-50%) scale(1.05)}}
+#app.opening .openbtn,#app.reading .openbtn{opacity:0;pointer-events:none;animation:none}
+
+/* ---------- fallback when scripts are blocked (file previews): show every page in a scrollable list ---------- */
+html:not(.js),html:not(.js) body{height:auto;overflow:auto}
+html:not(.js) #app{position:relative;inset:auto;display:block;padding:24px 0 40px;min-height:100vh}
+html:not(.js) .hold{width:min(94vw,520px);height:auto;margin:0 auto;animation:none}
+html:not(.js) .book{position:relative;inset:auto;transform:none;perspective:none}
+html:not(.js) .leaf{position:relative;inset:auto;width:100%;aspect-ratio:.56;transform:none!important;visibility:visible!important;transform-style:flat;display:none}
+html:not(.js) .leaf:target{display:block}
+html:not(.js) .book:not(:has(.leaf:target)) .leaf[data-i="0"]{display:block}
+html:not(.js) .face.back,html:not(.js) .top-note,html:not(.js) .nav,html:not(.js) .peel,html:not(.js) .openbtn,html:not(.js) .scratch canvas,html:not(.js) .hint{display:none}
+html:not(.js) .face{backface-visibility:visible}
+html:not(.js) .p4 form{display:none}
+.nj,.njb{display:none}
+html:not(.js) .njb{display:inline-block;margin-top:3cqw;padding:3cqw 8cqw;font-size:3.8cqw}
+html:not(.js) .cd,html:not(.js) .cap{display:none}
+html:not(.js) .nj{display:flex;align-items:center;justify-content:center;position:absolute;z-index:30;bottom:3.5%;height:11%;max-height:46px;min-width:26%;padding:0 5%;
+  border:1px solid var(--gold-l);border-radius:40px;text-decoration:none;white-space:nowrap;
+  background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);color:#1b0507;font-family:Cinzel,serif;font-weight:700;font-size:13px;letter-spacing:.18em;
+  box-shadow:0 4px 14px rgba(0,0,0,.55)}
+html:not(.js) .nj.pv{left:5%}html:not(.js) .nj.nx{right:5%}
+html:not(.js) .nj.mid{right:auto;left:50%;transform:translateX(-50%);font-size:14px;padding:0 9%}
+
+/* ---------- nav ---------- */
+.nav{z-index:20;position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 2.4vh);display:flex;justify-content:center;align-items:center;gap:16px;
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .6s .5s,transform .6s .5s}
+#app.reading .nav{opacity:1;pointer-events:auto;transform:none}
+.nb{width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:rgba(20,4,6,.75);color:var(--gold-l);font-size:22px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;transition:opacity .3s,background .3s}
+.nb:hover{background:rgba(122,15,20,.9)}
+.nb:disabled{opacity:.25;cursor:default}
+.dots{display:flex;gap:10px}
+.dots i{width:9px;height:9px;border-radius:50%;border:1px solid var(--gold);transition:background .3s,transform .3s}
+.dots i.on{background:var(--gold);transform:scale(1.25)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (prefers-reduced-motion:reduce){:root{--dur:250ms}.hold,.peel,.shine::after,.tap,.sparkle{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- shared artwork -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbeab0"/><stop offset=".35" stop-color="#d7a947"/>
+      <stop offset=".7" stop-color="#9a6a1a"/><stop offset="1" stop-color="#f0d27f"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2c6a0"/><stop offset="1" stop-color="#d49670"/>
+    </linearGradient>
+    <linearGradient id="skinV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4cba6"/><stop offset="1" stop-color="#d9a07a"/>
+    </linearGradient>
+    <linearGradient id="under" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="skinF" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6d3b2"/><stop offset=".55" stop-color="#e8b48c"/><stop offset="1" stop-color="#c98a62"/>
+    </linearGradient>
+    <linearGradient id="skinT" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f3cba6"/><stop offset=".5" stop-color="#e7b18a"/><stop offset="1" stop-color="#c98960"/>
+    </linearGradient>
+    <radialGradient id="skinR" cx=".42" cy=".3" r=".9">
+      <stop offset="0" stop-color="#f5d0ac"/><stop offset=".6" stop-color="#e2a97f"/><stop offset="1" stop-color="#bf7f57"/>
+    </radialGradient>
+    <linearGradient id="nail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe6dd"/><stop offset="1" stop-color="#eeb9a6"/>
+    </linearGradient>
+    <linearGradient id="hs" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3bb9b"/><stop offset=".45" stop-color="#cf9f7e"/><stop offset="1" stop-color="#9c6c4f"/>
+    </linearGradient>
+    <linearGradient id="hv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9ac8b"/><stop offset="1" stop-color="#a87656"/>
+    </linearGradient>
+    <radialGradient id="hr" cx=".35" cy=".25" r="1">
+      <stop offset="0" stop-color="#e6c2a3"/><stop offset=".55" stop-color="#c99877"/><stop offset="1" stop-color="#8e5f44"/>
+    </radialGradient>
+    <linearGradient id="hn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1d3c2"/><stop offset="1" stop-color="#d9a58c"/>
+    </linearGradient>
+    <filter id="bl2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>
+    <filter id="bl4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <g id="thumb">
+      <path id="thumbShape" d="M-18 400C-20 340 -8 300 6 272C15 253 26 240 40 234C55 229 68 240 64 257C60 275 54 294 56 316C58 342 62 372 66 560L-18 560Z"/>
+    </g>
+    <path id="leaf" d="M0 0C7-10 24-10 32 0C24 10 7 10 0 0Z"/>
+    <g id="half">
+      <path d="M100 56C118 56 128 42 148 40S182 47 190 33" fill="none" stroke="url(#gold)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M100 44C112 34 124 26 140 28S160 23 170 15" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M190 33C197 26 191 19 184 22C178 25 181 31 187 29" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M170 15C176 10 174 5 168 6" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+      <use href="#leaf" transform="translate(118 49) rotate(28) scale(.85)"/>
+      <use href="#leaf" transform="translate(130 39) rotate(-40) scale(.8)"/>
+      <use href="#leaf" transform="translate(150 40) rotate(32) scale(.85)"/>
+      <use href="#leaf" transform="translate(150 29) rotate(-55) scale(.75)"/>
+      <use href="#leaf" transform="translate(168 42) rotate(25) scale(.65)"/>
+      <use href="#leaf" transform="translate(176 30) rotate(-30) scale(.6)"/>
+      <circle cx="128" cy="30" r="2.6"/><circle cx="160" cy="21" r="2.4"/><circle cx="140" cy="49" r="2.2"/><circle cx="184" cy="44" r="2.2"/>
+    </g>
+    <symbol id="orn" viewBox="0 0 200 70">
+      <g fill="url(#gold)">
+        <use href="#half"/>
+        <use href="#half" transform="translate(200 0) scale(-1 1)"/>
+        <path d="M100 4C92 16 92 30 100 44C108 30 108 16 100 4Z"/>
+        <path d="M100 44C87 41 76 31 74 18C85 21 96 31 100 44Z"/>
+        <path d="M100 44C113 41 124 31 126 18C115 21 104 31 100 44Z"/>
+        <circle cx="100" cy="52" r="4"/>
+        <path d="M97 58L100 68L103 58Z"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<noscript><div class="ns" style="position:static">Tap the buttons to turn the pages. For the full animated invitation, open it from its web link in Safari or Chrome.</div></noscript>
+<script>
+window.addEventListener('error',function(e){var d=document.createElement('div');d.className='ns';d.textContent='Error: '+e.message+' (line '+e.lineno+')';document.body.appendChild(d);});
+</script>
+<main id="app" aria-label="Nikkah invitation">
+
+  <div class="top-note">
+    <div class="t1">Nikkah Invitation</div>
+    <div class="t2 script gt">You are invited</div>
+    <div class="tap">TAP THE CARD TO OPEN</div>
+  </div>
+
+  <div class="hold">
+    <div class="book" id="book">
+      <!-- 0: cover (front) / inside-left (back) -->
+      <div class="leaf" id="l0" data-i="0" style="--i:0"><a class="nj nx mid" href="#l1">Tap to open</a>
+        <div class="face front cover-face" id="cover" role="button" tabindex="0" aria-label="Open the invitation">
+          <div class="pg cover">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content">
+                <div class="ar bis gt">بِسْمِ ٱللَّٰهِ</div>
+                <div class="ni">Nikkah Invitation</div>
+                <div class="script nm gt">Mustafa</div>
+                <div class="amp">&amp;</div>
+                <div class="script nm gt">Saima</div>
+                <div class="seal">M&amp;S</div>
+              </div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+          <div class="shine"></div>
+        </div>
+        <div class="face back">
+          <div class="pg inside">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content"><div class="script mono gt">M&amp;S</div><div class="star">✦</div></div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1: invitation -->
+      <div class="leaf" id="l1" data-i="1" style="--i:1"><a class="nj pv" href="#l0">&lsaquo; Back</a><a class="nj nx" href="#l2">Next &rsaquo;</a>
+        <div class="face front">
+          <div class="pg p1">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content">
+                <div class="ar bis gt">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+                <div class="it bl">With the blessings of Almighty Allah</div>
+                <div class="star">✦</div>
+                <div class="host">Mr. Anis Ahmed Shaikh<br><i>&amp;</i><br>Mrs. Hasina Ahmed Shaikh</div>
+                <div class="inv">cordially invite you to the <b>NIKKAH</b><br>of their beloved daughter</div>
+                <div class="script nm gt">Saima</div>
+                <div class="sur">SHAIKH</div>
+                <div class="wi">with</div>
+                <div class="script nm gt">Mustafa</div>
+                <div class="sur">RAJAPKAR</div>
+                <div class="fam">S/O Mr. Muzaffar Mehmood Rajapkar<br>&amp; Mrs. Waheeda Muzaffar Rajapkar</div>
+              </div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <button class="peel" data-next aria-label="Turn the page"></button>
+          </div>
+        </div>
+        <div class="face back">
+          <div class="pg inside">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content"><div class="ar bis gt" style="font-size:7cqw">ٱلْحَمْدُ لِلَّٰهِ</div><div class="star">✦</div></div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: date / time / countdown -->
+      <div class="leaf" id="l2" data-i="2" style="--i:2"><a class="nj pv" href="#l1">&lsaquo; Back</a><a class="nj nx" href="#l3">Next &rsaquo;</a>
+        <div class="face front">
+          <div class="pg p2">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content">
+                <div class="kick">Nikkah Ceremony</div>
+                <h2 class="script gt">Save the Date</h2>
+                <div class="scratch" id="scratch">
+                  <div class="reveal"><div class="d">Wednesday</div><div class="n gt">23</div><div class="m">December 2026</div></div>
+                  <canvas id="cv" tabindex="0" role="img" aria-label="Scratch card. Wednesday, 23 December 2026. Press Enter to reveal."></canvas>
+                </div>
+                <div class="hint" id="hint">Scratch the gold to reveal the date</div>
+                <div class="lab">TIME</div>
+                <div class="tv">7:00 PM – 11:00 PM</div>
+                <div class="cd" id="cd" aria-live="off">
+                  <div><b data-u="d">00</b><span>Days</span></div>
+                  <div><b data-u="h">00</b><span>Hours</span></div>
+                  <div><b data-u="m">00</b><span>Mins</span></div>
+                  <div><b data-u="s">00</b><span>Secs</span></div>
+                </div>
+                <div class="cap" id="cap">until the celebration begins</div>
+              </div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <button class="peel" data-next aria-label="Turn the page"></button>
+          </div>
+        </div>
+        <div class="face back">
+          <div class="pg inside">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content"><div class="script mono gt">M&amp;S</div><div class="star">✦</div></div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: venue (last page) -->
+      <div class="leaf" id="l3" data-i="3" style="--i:3"><a class="nj pv" href="#l2">&lsaquo; Back</a><a class="nj nx" href="#l4">Next &rsaquo;</a>
+        <div class="face front">
+          <div class="pg p3">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content">
+                <div class="kick">Venue</div>
+                <div class="vn gt">Royal Garden<br>Banquet</div>
+                <div class="ad it">Row House 2, Evershine Enclave, Opposite BMC Office, Behind Rassaz Mall, Bharti Nagar, Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107, India</div>
+                <a class="btn" href="https://share.google/dDlYJfgfLR4ZmroEQ" target="_blank" rel="noopener">Open in Maps</a>
+                <div class="star">✦</div>
+                <div class="ar dua">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا<br>وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+                <div class="tr it">May Allah bless you both and unite you in goodness.</div>
+                <div class="script sg gt">Mustafa &amp; Saima</div>
+              </div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <button class="peel" data-next aria-label="Turn the page"></button>
+          </div>
+        </div>
+        <div class="face back">
+          <div class="pg inside">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content"><div class="script mono gt">M&amp;S</div><div class="star">✦</div></div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: RSVP (last page) -->
+      <div class="leaf" id="l4" data-i="4" style="--i:4"><a class="nj pv" href="#l3">&lsaquo; Back</a>
+        <div class="face front">
+          <div class="pg p4" id="rsvpPage">
+            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+            <div class="band"><i class="rope t"></i>
+              <div class="content">
+                <div class="kick">Kindly Reply</div>
+                <h2 class="script gt">Will You Join Us</h2>
+                <div class="sub">It would mean so much to have you with us. Please let us know if you can join the celebration.</div>
+                <div class="by" id="replyBy" hidden></div>
+                <a class="btn njb" href="https://wa.me/971507780210?text=Nikkah%20RSVP%20%E2%80%94%20Mustafa%20%26%20Saima%0AName%3A%20%0AReply%3A%20Joyfully%20accepts%20%2F%20Regretfully%20declines%0AGuests%3A%20">Reply on WhatsApp</a>
+                <form id="rsvp" novalidate autocomplete="off">
+                  <label class="l" for="rname">Full Name</label>
+                  <input class="txt" id="rname" name="name" type="text" placeholder="Your name" maxlength="80" autocomplete="name">
+                  <span class="l" id="attl">Will you attend?</span>
+                  <div class="opts" role="radiogroup" aria-labelledby="attl">
+                    <label class="opt"><input type="radio" name="att" value="Joyfully accepts"><span>Joyfully accepts</span></label>
+                    <label class="opt"><input type="radio" name="att" value="Regretfully declines"><span>Regretfully declines</span></label>
+                  </div>
+                  <div id="guestsRow">
+                    <span class="l">Number of guests</span>
+                    <div class="step"><button type="button" id="gm" aria-label="Fewer guests">&minus;</button><b id="gn" aria-live="polite">1</b><button type="button" id="gp" aria-label="More guests">+</button></div>
+                  </div>
+                  <div class="msg" id="rmsg" role="alert"></div>
+                  <button class="send" type="submit" id="sendBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    Send my reply
+                  </button>
+                </form>
+                <div class="thanks" id="thanks">
+                  <div class="ar">جَزَاكُمُ ٱللَّٰهُ خَيْرًا</div>
+                  <p id="thanksTxt">Thank you. Your reply has been sent.</p>
+                  <div class="script sg gt" style="font-size:8cqw">Mustafa &amp; Saima</div>
+                </div>
+              </div>
+            <i class="rope b"></i></div>
+            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
+          </div>
+        </div>
+        <div class="face back"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="openbtn" id="openBtn" type="button">Tap to open</button>
+
+  <nav class="nav" aria-label="Pages">
+    <button class="nb" id="prev" aria-label="Previous page">‹</button>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <button class="nb" id="next" aria-label="Next page">›</button>
+  </nav>
+</main>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const app = $('#app'), book = $('#book'), leaves = $$('.leaf'), N = leaves.length, FLIPS = N - 1;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const FLAT = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform)) || matchMedia('(pointer:coarse)').matches;
+  if (FLAT) app.classList.add('flat');
+  const DUR = FLAT ? 500 : reduce ? 250 : 1300;
+  let cur = 0, busy = false, opened = false, suppress = false;
+
+  /* floating gold dust */
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span'); s.className = 'sparkle';
+    const z = 3 + Math.random() * 5;
+    s.style.cssText = `left:${Math.random() * 100}%;width:${z}px;height:${z}px;animation-duration:${9 + Math.random() * 10}s;animation-delay:${-Math.random() * 18}s`;
+    app.prepend(s);
+  }
+
+  /* ---------- page logic ---------- */
+  const dots = $$('.dots i'), prev = $('#prev'), next = $('#next');
+  function updateZ() { leaves.forEach((l, i) => l.style.zIndex = i < cur ? i + 1 : N - i); }
+  /* only the pages next to the current one are drawn, so no browser can paint the wrong page on top */
+  function vis(lo, hi) { if (FLAT) return; leaves.forEach((l, i) => { l.style.visibility = (i >= lo - 1 && i <= hi + 1) ? 'visible' : 'hidden'; }); }
+  function shift() {
+    const w = book.offsetWidth, spread = cur >= 1 && innerWidth >= w * 2 + 32;
+    book.style.setProperty('--shift', spread ? (w / 2) + 'px' : '0px');
+  }
+  function ui() {
+    leaves.forEach((l, i) => { l.inert = i !== cur; });
+    prev.disabled = cur <= 0; next.disabled = cur >= FLIPS;
+    dots.forEach((d, i) => d.classList.toggle('on', i === cur - 1));
+    app.classList.toggle('reading', cur >= 1);
+    shift();
+  }
+  function setCur(n) { cur = n; leaves.forEach((l, i) => { l.classList.toggle('flipped', i < cur); l.classList.toggle('cur', i === cur); }); ui(); }
+  function go(n) {
+    if (busy || n < 0 || n > FLIPS || n === cur) return;
+    busy = true;
+    const lo = Math.min(cur, n), hi = Math.max(cur, n);
+    vis(lo, hi);
+    for (let i = lo; i < hi; i++) leaves[i].style.zIndex = 50 + i;
+    setCur(n);
+    setTimeout(() => { updateZ(); vis(cur, cur); busy = false; }, DUR + 80);
+  }
+  function openBook() {
+    if (busy) return;
+    if (opened) return go(1);
+    opened = true; app.classList.add('opening');
+    setTimeout(() => go(1), reduce ? 0 : 450);
+  }
+  $('#cover').addEventListener('click', () => { if (cur === 0 && !suppress) openBook(); });
+  $('#openBtn').addEventListener('click', () => { if (cur === 0) openBook(); });
+  $('#cover').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); } });
+  prev.addEventListener('click', () => go(cur - 1));
+  next.addEventListener('click', () => go(cur + 1));
+  $$('[data-next]').forEach(b => b.addEventListener('click', () => go(cur + 1)));
+  addEventListener('keydown', e => {
+    if (e.target.closest && e.target.closest('input,textarea')) return;
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft') go(cur - 1);
+  });
+  addEventListener('resize', shift);
+
+  /* drag / swipe to turn like a real page */
+  let drag = null, flatStart = null;
+  addEventListener('pointerup', e => {
+    if (!FLAT || !flatStart) return;
+    const dx = e.clientX - flatStart.x, dy = e.clientY - flatStart.y; flatStart = null;
+    if (!opened || cur < 1 || Math.abs(dx) < 45 || Math.abs(dy) > Math.abs(dx) * .8) return;
+    go(dx < 0 ? cur + 1 : cur - 1);
+  });
+  addEventListener('pointercancel', () => { flatStart = null; });
+  book.addEventListener('pointerdown', e => {
+    if (FLAT) { if (e.target.closest('canvas,a,button,input,label')) return; flatStart = { x: e.clientX, y: e.clientY }; return; }
+    if (!opened || busy || cur < 1 || (e.button || 0) > 0) return;
+    if (e.target.closest('canvas,a,button,input,label')) return;
+    drag = { x: e.clientX, y: e.clientY, dir: 0, p: 0, leaf: null };
+  });
+  addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.dir) {
+      if (Math.abs(dx) < 10) return;
+      if (Math.abs(dy) > Math.abs(dx) * 1.2) { drag = null; return; }
+      const dir = dx < 0 ? 1 : -1;
+      if ((dir === 1 && cur >= FLIPS) || (dir === -1 && cur <= 1)) { drag = null; return; }
+      drag.dir = dir; drag.leaf = leaves[dir === 1 ? cur : cur - 1];
+      drag.leaf.style.transition = 'none'; drag.leaf.style.zIndex = 50;
+    }
+    const ok = drag.dir === 1 ? dx < 0 : dx > 0;
+    drag.p = ok ? Math.min(1, Math.abs(dx) / (book.offsetWidth * .85)) : 0;
+    drag.leaf.style.transform = `rotateY(${drag.dir === 1 ? -180 * drag.p : -180 + 180 * drag.p}deg) translateZ(-${leaves.indexOf(drag.leaf)}px)`;
+  });
+  function endDrag() {
+    if (!drag) return;
+    const d = drag; drag = null;
+    if (!d.dir) return;
+    const l = d.leaf, commit = d.p > .28;
+    void l.offsetWidth;
+    l.style.transition = '';
+    l.style.transitionDuration = ((commit ? 1 - d.p : d.p) * DUR + 220) + 'ms';
+    busy = true;
+    if (commit) setCur(cur + d.dir);
+    l.style.transform = '';
+    suppress = true;
+    setTimeout(() => { l.style.transitionDuration = ''; updateZ(); busy = false; suppress = false; }, DUR + 80);
+  }
+  addEventListener('pointerup', endDrag);
+  addEventListener('pointercancel', endDrag);
+
+  updateZ(); vis(0, 0); setCur(0);
+
+  /* ---------- scratch to reveal ---------- */
+  const wrap = $('#scratch'), cv = $('#cv'), ctx = cv.getContext('2d', { willReadFrequently: true });
+  let scratching = false, touched = false, revealed = false, lastX = 0, lastY = 0, lastCheck = 0;
+  function paint() {
+    const w = cv.offsetWidth, h = cv.offsetHeight, dpr = Math.min(devicePixelRatio || 1, 2);
+    if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, '#f7e3a0'); g.addColorStop(.3, '#d7a947'); g.addColorStop(.55, '#f3d98a'); g.addColorStop(.8, '#b4832a'); g.addColorStop(1, '#f0d27f');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(120,76,10,.28)'; ctx.lineWidth = 1;
+    for (let x = -h; x < w + h; x += 9) { ctx.beginPath(); ctx.moveTo(x, h); ctx.lineTo(x + h, 0); ctx.stroke(); }
+    ctx.fillStyle = 'rgba(70,16,10,.82)'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `600 ${Math.round(w * .075)}px Cinzel, serif`;
+    ctx.fillText('SCRATCH HERE', w / 2, h / 2 - h * .06);
+    ctx.font = `${Math.round(w * .09)}px "Great Vibes", cursive`;
+    ctx.fillText('✦ ✦ ✦', w / 2, h / 2 + h * .22);
+  }
+  function pos(e) { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * (cv.offsetWidth / r.width), (e.clientY - r.top) * (cv.offsetHeight / r.height)]; }
+  function scratchTo(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.strokeStyle = '#000';
+    ctx.lineCap = ctx.lineJoin = 'round'; ctx.lineWidth = Math.max(22, cv.offsetWidth * .13);
+    ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(x, y); ctx.stroke();
+    lastX = x; lastY = y;
+    const t = performance.now();
+    if (t - lastCheck > 140) { lastCheck = t; check(); }
+  }
+  function check() {
+    if (revealed) return;
+    const W = cv.width, H = cv.height, d = ctx.getImageData(0, 0, W, H).data;
+    let clear = 0, total = 0;
+    for (let y = 0; y < H; y += 6) for (let x = 0; x < W; x += 6) { total++; if (d[(y * W + x) * 4 + 3] < 40) clear++; }
+    if (clear / total > .42) reveal();
+  }
+  function reveal() {
+    if (revealed) return; revealed = true;
+    cv.classList.add('gone'); wrap.classList.add('done');
+    $('#hint').style.opacity = 0;
+  }
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); cv.setPointerCapture(e.pointerId); scratching = touched = true; [lastX, lastY] = pos(e); scratchTo(lastX + .01, lastY); });
+  cv.addEventListener('pointermove', e => { if (!scratching) return; const [x, y] = pos(e); scratchTo(x, y); });
+  const stop = () => { if (scratching) { scratching = false; check(); } };
+  cv.addEventListener('pointerup', stop); cv.addEventListener('pointercancel', stop);
+  cv.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });
+  paint();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!touched) paint(); });
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (!touched) paint(); }).observe(cv);
+
+  /* ---------- RSVP ----------
+     Set ONE of these so replies reach you:
+       whatsapp : your number with country code, digits only, e.g. '919876543210'
+                  (guest's reply opens as a ready-to-send WhatsApp message)
+       endpoint : a form URL such as Formspree (replies are posted there as JSON)
+     replyBy    : e.g. '16th of December 2026'  (leave '' to hide the line)        */
+  const RSVP = { whatsapp: '971507780210', endpoint: '', replyBy: '' };
+
+  const form = $('#rsvp'), page4 = $('#rsvpPage'), rmsg = $('#rmsg'), gn = $('#gn'), gm = $('#gm'), gp = $('#gp'), sendBtn = $('#sendBtn');
+  if (RSVP.replyBy) { const by = $('#replyBy'); by.hidden = false; by.innerHTML = 'Kindly reply by the<br>' + RSVP.replyBy; }
+  let guests = 1;
+  const setGuests = n => { guests = Math.max(1, Math.min(10, n)); gn.textContent = guests; gm.disabled = guests <= 1; gp.disabled = guests >= 10; };
+  gm.addEventListener('click', () => setGuests(guests - 1));
+  gp.addEventListener('click', () => setGuests(guests + 1));
+  setGuests(1);
+  $$('input[name=att]', form).forEach(r => r.addEventListener('change', () => {
+    $('#guestsRow').style.display = r.value.startsWith('Regret') && r.checked ? 'none' : '';
+    rmsg.textContent = '';
+  }));
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = $('#rname').value.trim(), att = ($('input[name=att]:checked', form) || {}).value;
+    if (!name) { rmsg.textContent = 'Please enter your name.'; $('#rname').focus(); return; }
+    if (!att) { rmsg.textContent = 'Please choose whether you can attend.'; return; }
+    const coming = att.startsWith('Joy'), n = coming ? guests : 0;
+    const text = `Nikkah RSVP — Mustafa & Saima\nName: ${name}\nReply: ${att}` + (coming ? `\nGuests: ${n}` : '');
+    const done = msg => { $('#thanksTxt').textContent = msg; page4.classList.add('sent'); };
+    sendBtn.disabled = true; rmsg.textContent = '';
+    try {
+      if (RSVP.endpoint) {
+        const r = await fetch(RSVP.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ name, attendance: att, guests: n, message: text }) });
+        if (!r.ok) throw new Error('bad response');
+        done(coming ? `Thank you, ${name}. We look forward to celebrating with you.` : `Thank you, ${name}. You will be missed, and we appreciate you letting us know.`);
+      } else if (RSVP.whatsapp) {
+        window.open('https://wa.me/' + RSVP.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+        done('WhatsApp is opening with your reply. Please press send to confirm.');
+      } else {
+        throw new Error('RSVP not configured');
+      }
+    } catch (err) {
+      rmsg.textContent = 'Sorry, your reply could not be sent. Please try again or contact the family directly.';
+      sendBtn.disabled = false;
+    }
+  });
+
+  /* ---------- countdown to 23 Dec 2026, 7:00 PM IST ---------- */
+  const target = new Date('2026-12-23T19:00:00+05:30').getTime();
+  const out = {}; $$('#cd b').forEach(b => out[b.dataset.u] = b);
+  const pad = n => String(n).padStart(2, '0');
+  function tick() {
+    let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+    out.d.textContent = pad(Math.floor(s / 86400)); s %= 86400;
+    out.h.textContent = pad(Math.floor(s / 3600)); s %= 3600;
+    out.m.textContent = pad(Math.floor(s / 60)); out.s.textContent = pad(s % 60);
+    if (target <= Date.now()) $('#cap').textContent = 'Alhamdulillah — the celebration has begun';
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
