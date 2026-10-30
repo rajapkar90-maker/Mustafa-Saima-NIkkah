@@ -187,40 +187,6 @@ body{font-family:"Cormorant Garamond",Georgia,serif;user-select:none;-webkit-use
 .p3 .tr{font-size:3.5cqw}
 .p3 .sg{font-size:9.1cqw}
 
-/* page 4 : RSVP */
-.p4 .content{gap:1cqw;padding:3cqw 7cqw}
-.p4 h2{font-size:11.4cqw;font-weight:400}
-.p4 .sub{font-size:3.6cqw;line-height:1.3;color:var(--cream)}
-.p4 .by{font-family:Cinzel,serif;font-size:3.0cqw;letter-spacing:.22em;text-indent:.22em;color:var(--gold);text-transform:uppercase;line-height:1.5}
-.p4 form{width:100%;display:flex;flex-direction:column;gap:1cqw;text-align:left;margin-top:.6cqw}
-.p4 .l{font-family:Cinzel,serif;font-size:3.0cqw;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
-.p4 .txt{width:100%;height:10cqw;padding:0 3cqw;border:.35cqw solid rgba(212,168,75,.7);border-radius:1.6cqw;background:rgba(255,255,255,.06);
-  color:var(--gold-l);font-family:"Cormorant Garamond",Georgia,serif;font-size:max(16px,4cqw);outline:0;user-select:text;-webkit-user-select:text}
-.p4 .txt::placeholder{color:#8f7a4d}
-.p4 .txt:focus{border-color:var(--gold-l);box-shadow:0 0 0 .5cqw rgba(212,168,75,.25)}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
-.opt{position:relative;display:block;cursor:pointer}
-.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
-.opt span{display:flex;align-items:center;justify-content:center;height:11cqw;padding:0 1cqw;text-align:center;font-size:3.6cqw;line-height:1.1;color:var(--cream);
-  border:.35cqw solid rgba(212,168,75,.7);border-radius:1.6cqw;background:rgba(255,255,255,.04);transition:background .25s,color .25s}
-.opt input:checked+span{background:linear-gradient(135deg,#fbeab0,#d7a947 55%,#f0d27f);color:#1b0507;font-weight:600}
-.opt input:focus-visible+span{outline:.5cqw solid var(--gold-l);outline-offset:.4cqw}
-.step{display:flex;align-items:center;justify-content:center;gap:5cqw}
-.step button{width:9cqw;height:9cqw;border-radius:50%;border:.35cqw solid rgba(212,168,75,.7);background:rgba(255,255,255,.05);color:var(--gold-l);font-size:5.7cqw;line-height:1;cursor:pointer}
-.step button:disabled{opacity:.3}
-.step b{font-family:Cinzel,serif;font-size:6.8cqw;min-width:8cqw;text-align:center;color:var(--gold-l)}
-.send{display:flex;align-items:center;justify-content:center;gap:2cqw;height:10.5cqw;margin-top:.8cqw;border:0;border-radius:10cqw;cursor:pointer;
-  background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);color:#1b0507;font-family:Cinzel,serif;font-weight:700;font-size:3.4cqw;letter-spacing:.2em;
-  text-transform:uppercase;box-shadow:0 .8cqw 1.8cqw rgba(0,0,0,.5)}
-.send svg{width:3.6cqw;height:3.6cqw}
-.send:disabled{opacity:.6;cursor:default}
-.msg{font-size:3.4cqw;font-style:italic;color:#f2b8b0;text-align:center;min-height:3.4cqw;line-height:1.2}
-.thanks{display:none;flex-direction:column;align-items:center;gap:2cqw;margin-top:2cqw}
-.thanks .ar{font-size:6.8cqw;color:var(--gold-l)}
-.thanks p{font-size:4.3cqw;line-height:1.35;color:var(--cream)}
-.p4.sent form{display:none}.p4.sent .thanks{display:flex}
-.p4.sent .sub,.p4.sent .by{display:none}
-
 /* inside / back faces */
 .inside .content{gap:2cqw}
 .inside .mono{font-size:25.1cqw}
@@ -246,16 +212,26 @@ html:not(.js) .leaf:target{display:block}
 html:not(.js) .book:not(:has(.leaf:target)) .leaf[data-i="0"]{display:block}
 html:not(.js) .face.back,html:not(.js) .top-note,html:not(.js) .nav,html:not(.js) .peel,html:not(.js) .openbtn,html:not(.js) .scratch canvas,html:not(.js) .hint{display:none}
 html:not(.js) .face{backface-visibility:visible}
-html:not(.js) .p4 form{display:none}
-.nj,.njb{display:none}
-html:not(.js) .njb{display:inline-block;margin-top:3cqw;padding:3cqw 8cqw;font-size:3.8cqw}
-html:not(.js) .cd,html:not(.js) .cap{display:none}
+.nj{display:none}
 html:not(.js) .nj{display:flex;align-items:center;justify-content:center;position:absolute;z-index:30;bottom:3.5%;height:11%;max-height:46px;min-width:26%;padding:0 5%;
   border:1px solid var(--gold-l);border-radius:40px;text-decoration:none;white-space:nowrap;
   background:linear-gradient(135deg,#fbeab0,#d7a947 50%,#f0d27f);color:#1b0507;font-family:Cinzel,serif;font-weight:700;font-size:13px;letter-spacing:.18em;
   box-shadow:0 4px 14px rgba(0,0,0,.55)}
 html:not(.js) .nj.pv{left:5%}html:not(.js) .nj.nx{right:5%}
 html:not(.js) .nj.mid{right:auto;left:50%;transform:translateX(-50%);font-size:14px;padding:0 9%}
+
+
+/* ---------- music toggle ---------- */
+.music{position:absolute;z-index:30;top:calc(env(safe-area-inset-top) + 14px);right:14px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--gold);background:rgba(20,4,6,.75);color:var(--gold-l);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.5);transition:background .3s,box-shadow .3s}
+.music:hover{background:rgba(122,15,20,.9)}
+.music svg{width:22px;height:22px}
+.music .off{display:none}
+.music.muted .on{display:none}.music.muted .off{display:block}
+.music.playing{box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 16px rgba(246,227,161,.6)}
+.music[hidden]{display:none}
+html:not(.js) .music{display:none}
 
 /* ---------- nav ---------- */
 .nav{z-index:20;position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 2.4vh);display:flex;justify-content:center;align-items:center;gap:16px;
@@ -468,7 +444,7 @@ window.addEventListener('error',function(e){var d=document.createElement('div');
       </div>
 
       <!-- 3: venue (last page) -->
-      <div class="leaf" id="l3" data-i="3" style="--i:3"><a class="nj pv" href="#l2">&lsaquo; Back</a><a class="nj nx" href="#l4">Next &rsaquo;</a>
+      <div class="leaf" id="l3" data-i="3" style="--i:3"><a class="nj pv" href="#l2">&lsaquo; Back</a>
         <div class="face front">
           <div class="pg p3">
             <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
@@ -485,7 +461,7 @@ window.addEventListener('error',function(e){var d=document.createElement('div');
               </div>
             <i class="rope b"></i></div>
             <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
-            <button class="peel" data-next aria-label="Turn the page"></button>
+            
           </div>
         </div>
         <div class="face back">
@@ -498,58 +474,23 @@ window.addEventListener('error',function(e){var d=document.createElement('div');
           </div>
         </div>
       </div>
-
-      <!-- 4: RSVP (last page) -->
-      <div class="leaf" id="l4" data-i="4" style="--i:4"><a class="nj pv" href="#l3">&lsaquo; Back</a>
-        <div class="face front">
-          <div class="pg p4" id="rsvpPage">
-            <div class="orn top"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
-            <div class="band"><i class="rope t"></i>
-              <div class="content">
-                <div class="kick">Kindly Reply</div>
-                <h2 class="script gt">Will You Join Us</h2>
-                <div class="sub">It would mean so much to have you with us. Please let us know if you can join the celebration.</div>
-                <div class="by" id="replyBy" hidden></div>
-                <a class="btn njb" href="https://wa.me/971507780210?text=Nikkah%20RSVP%20%E2%80%94%20Mustafa%20%26%20Saima%0AName%3A%20%0AReply%3A%20Joyfully%20accepts%20%2F%20Regretfully%20declines%0AGuests%3A%20">Reply on WhatsApp</a>
-                <form id="rsvp" novalidate autocomplete="off">
-                  <label class="l" for="rname">Full Name</label>
-                  <input class="txt" id="rname" name="name" type="text" placeholder="Your name" maxlength="80" autocomplete="name">
-                  <span class="l" id="attl">Will you attend?</span>
-                  <div class="opts" role="radiogroup" aria-labelledby="attl">
-                    <label class="opt"><input type="radio" name="att" value="Joyfully accepts"><span>Joyfully accepts</span></label>
-                    <label class="opt"><input type="radio" name="att" value="Regretfully declines"><span>Regretfully declines</span></label>
-                  </div>
-                  <div id="guestsRow">
-                    <span class="l">Number of guests</span>
-                    <div class="step"><button type="button" id="gm" aria-label="Fewer guests">&minus;</button><b id="gn" aria-live="polite">1</b><button type="button" id="gp" aria-label="More guests">+</button></div>
-                  </div>
-                  <div class="msg" id="rmsg" role="alert"></div>
-                  <button class="send" type="submit" id="sendBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                    Send my reply
-                  </button>
-                </form>
-                <div class="thanks" id="thanks">
-                  <div class="ar">جَزَاكُمُ ٱللَّٰهُ خَيْرًا</div>
-                  <p id="thanksTxt">Thank you. Your reply has been sent.</p>
-                  <div class="script sg gt" style="font-size:8cqw">Mustafa &amp; Saima</div>
-                </div>
-              </div>
-            <i class="rope b"></i></div>
-            <div class="orn bot"><svg viewBox="0 0 200 70"><use href="#orn"/></svg></div>
-          </div>
-        </div>
-        <div class="face back"></div>
-      </div>
     </div>
 
   </div>
+
+  <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
+  <button class="music muted" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path class="on" d="M9 18V6l10-2v12"/><circle class="on" cx="6.5" cy="18" r="2.5"/><circle class="on" cx="16.5" cy="16" r="2.5"/>
+      <g class="off"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path d="M3 3l18 18"/></g>
+    </svg>
+  </button>
 
   <button class="openbtn" id="openBtn" type="button">Tap to open</button>
 
   <nav class="nav" aria-label="Pages">
     <button class="nb" id="prev" aria-label="Previous page">‹</button>
-    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
     <button class="nb" id="next" aria-label="Next page">›</button>
   </nav>
 </main>
@@ -717,51 +658,21 @@ window.addEventListener('error',function(e){var d=document.createElement('div');
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!touched) paint(); });
   if ('ResizeObserver' in window) new ResizeObserver(() => { if (!touched) paint(); }).observe(cv);
 
-  /* ---------- RSVP ----------
-     Set ONE of these so replies reach you:
-       whatsapp : your number with country code, digits only, e.g. '919876543210'
-                  (guest's reply opens as a ready-to-send WhatsApp message)
-       endpoint : a form URL such as Formspree (replies are posted there as JSON)
-     replyBy    : e.g. '16th of December 2026'  (leave '' to hide the line)        */
-  const RSVP = { whatsapp: '971507780210', endpoint: '', replyBy: '' };
-
-  const form = $('#rsvp'), page4 = $('#rsvpPage'), rmsg = $('#rmsg'), gn = $('#gn'), gm = $('#gm'), gp = $('#gp'), sendBtn = $('#sendBtn');
-  if (RSVP.replyBy) { const by = $('#replyBy'); by.hidden = false; by.innerHTML = 'Kindly reply by the<br>' + RSVP.replyBy; }
-  let guests = 1;
-  const setGuests = n => { guests = Math.max(1, Math.min(10, n)); gn.textContent = guests; gm.disabled = guests <= 1; gp.disabled = guests >= 10; };
-  gm.addEventListener('click', () => setGuests(guests - 1));
-  gp.addEventListener('click', () => setGuests(guests + 1));
-  setGuests(1);
-  $$('input[name=att]', form).forEach(r => r.addEventListener('change', () => {
-    $('#guestsRow').style.display = r.value.startsWith('Regret') && r.checked ? 'none' : '';
-    rmsg.textContent = '';
-  }));
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const name = $('#rname').value.trim(), att = ($('input[name=att]:checked', form) || {}).value;
-    if (!name) { rmsg.textContent = 'Please enter your name.'; $('#rname').focus(); return; }
-    if (!att) { rmsg.textContent = 'Please choose whether you can attend.'; return; }
-    const coming = att.startsWith('Joy'), n = coming ? guests : 0;
-    const text = `Nikkah RSVP — Mustafa & Saima\nName: ${name}\nReply: ${att}` + (coming ? `\nGuests: ${n}` : '');
-    const done = msg => { $('#thanksTxt').textContent = msg; page4.classList.add('sent'); };
-    sendBtn.disabled = true; rmsg.textContent = '';
-    try {
-      if (RSVP.endpoint) {
-        const r = await fetch(RSVP.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ name, attendance: att, guests: n, message: text }) });
-        if (!r.ok) throw new Error('bad response');
-        done(coming ? `Thank you, ${name}. We look forward to celebrating with you.` : `Thank you, ${name}. You will be missed, and we appreciate you letting us know.`);
-      } else if (RSVP.whatsapp) {
-        window.open('https://wa.me/' + RSVP.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-        done('WhatsApp is opening with your reply. Please press send to confirm.');
-      } else {
-        throw new Error('RSVP not configured');
-      }
-    } catch (err) {
-      rmsg.textContent = 'Sorry, your reply could not be sent. Please try again or contact the family directly.';
-      sendBtn.disabled = false;
-    }
-  });
+  /* ---------- background music ----------
+     Put your song next to this file and name it music.mp3 (or change the src on the <audio> tag).
+     Browsers only allow sound after a tap, so it starts when the guest opens the card;
+     the round button (top right) turns it on / off. */
+  const bgm = $('#bgm'), mbtn = $('#musicBtn');
+  let wantMusic = true, userMuted = false;
+  const mui = on => { mbtn.classList.toggle('muted', !on); mbtn.classList.toggle('playing', on); mbtn.setAttribute('aria-pressed', on); mbtn.setAttribute('aria-label', on ? 'Pause music' : 'Play music'); };
+  function playMusic() { bgm.volume = .6; const p = bgm.play(); if (p && p.then) p.then(() => mui(true)).catch(() => mui(false)); }
+  mbtn.addEventListener('click', () => { if (bgm.paused) { userMuted = false; playMusic(); } else { userMuted = true; bgm.pause(); mui(false); } });
+  bgm.addEventListener('error', () => { mbtn.hidden = true; });
+  const firstTap = () => { if (!userMuted && bgm.paused && !mbtn.hidden) playMusic(); };
+  $('#cover').addEventListener('click', firstTap);
+  $('#openBtn').addEventListener('click', firstTap);
+  $('#cover').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') firstTap(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) bgm.pause(); else if (!userMuted && opened) playMusic(); });
 
   /* ---------- countdown to 23 Dec 2026, 7:00 PM IST ---------- */
   const target = new Date('2026-12-23T19:00:00+05:30').getTime();
